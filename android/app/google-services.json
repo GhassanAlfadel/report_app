@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "646733770358",
+    "project_id": "ortapp-61e2b",
+    "storage_bucket": "ortapp-61e2b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646733770358:android:b1573404bc69fcf0713957",
+        "android_client_info": {
+          "package_name": "com.example.report_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVaAa39BOUjNgtH5uBE8nC83PgPOSti5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
