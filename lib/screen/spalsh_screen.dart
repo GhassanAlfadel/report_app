@@ -89,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen>
             FadeTransition(
               opacity: _animations.last,
               child: const Text(
-                'Report App',
+                'بلاغات',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,

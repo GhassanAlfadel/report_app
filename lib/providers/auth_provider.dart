@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:report_app/errors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider with ChangeNotifier {
@@ -24,8 +25,11 @@ class AuthProvider with ChangeNotifier {
 
       await pref.setBool("logedin", true);
       chekAuthState();
-    } catch (e) {
-      print(e);
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("حدث خطأ ما حاول مره اخرى"),
+        behavior: SnackBarBehavior.floating,
+      ));
     }
   }
 
@@ -43,8 +47,31 @@ class AuthProvider with ChangeNotifier {
 
       await pref.setBool("logedin", true);
       chekAuthState();
-    } catch (e) {
-      print(e);
+    } on FirebaseAuthException catch (e) {
+      String message = "حدث خطأ غير متوقع، الرجاء المحاولة لاحقًا";
+
+      switch (e.code) {
+        case CustomError.invalidEmail:
+          message = "صيغة البريد الإلكتروني غير صحيحة";
+          break;
+        case CustomError.userNotFound:
+          message = "المستخدم غير موجود";
+          break;
+        case CustomError.wrongPassword:
+          message = "البريد الإلكتروني أو كلمة السر غير صحيح";
+          break;
+        case CustomError.networkError:
+          message = "تأكد من اتصالك بالإنترنت";
+          break;
+        case CustomError.unknownError:
+          message = "حصل خطأ ما الرجاء المحاولة مره أخرى";
+          break;
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(message),
+        behavior: SnackBarBehavior.floating,
+      ));
     }
   }
 

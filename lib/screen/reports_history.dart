@@ -57,6 +57,8 @@ class _ReportsHistoryState extends State<ReportsHistory> {
         },
       ),
       floatingActionButton: IconButton(
+          iconSize: 20,
+          color: Color.fromARGB(255, 138, 157, 167),
           onPressed: () {
             Navigator.of(context).pushNamed("/add_report", arguments: args);
           },
