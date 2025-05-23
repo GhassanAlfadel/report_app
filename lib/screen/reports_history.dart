@@ -19,8 +19,9 @@ class _ReportsHistoryState extends State<ReportsHistory> {
         ModalRoute.of(context)?.settings.arguments as Map<String, String>;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 3, 134, 152),
+      backgroundColor: const Color.fromARGB(255, 3, 134, 152),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 3, 134, 152),
         title: const Align(
           alignment: Alignment.center,
           child: Text(
@@ -43,6 +44,7 @@ class _ReportsHistoryState extends State<ReportsHistory> {
           }
 
           return ListView.separated(
+              padding: EdgeInsets.symmetric(horizontal: 10),
               itemBuilder: (context, index) {
                 return ReportItem(reportModel: snapShot.data![index]);
               },

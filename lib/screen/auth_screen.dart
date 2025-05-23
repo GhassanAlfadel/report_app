@@ -36,9 +36,9 @@ class _AuthScreenState extends State<AuthScreen> {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     if (_authMode == AuthMode.Login) {
-      authProvider.login(email, password);
+      authProvider.login(email, password, context);
     } else {
-      authProvider.signup(email, password);
+      authProvider.signup(email, password, context);
     }
   }
 
@@ -70,7 +70,9 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 3, 134, 152),
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 3, 134, 152),
+      ),
       body: Center(
         child: Directionality(
           textDirection: TextDirection.rtl,
@@ -88,7 +90,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     decoration: InputDecoration(
                       labelText: "البريد الإلكتروني",
                       filled: true,
-                      fillColor: Color.fromARGB(255, 138, 157, 167),
+                      fillColor: const Color.fromARGB(255, 138, 157, 167),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)),
                       contentPadding: const EdgeInsets.symmetric(
@@ -106,7 +108,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     decoration: InputDecoration(
                       labelText: "كلمة المرور",
                       filled: true,
-                      fillColor: Color.fromARGB(255, 138, 157, 167),
+                      fillColor: const Color.fromARGB(255, 138, 157, 167),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)),
                       contentPadding: const EdgeInsets.symmetric(
@@ -126,7 +128,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       decoration: InputDecoration(
                         labelText: "تأكيد كلمة المرور",
                         filled: true,
-                        fillColor: Color.fromARGB(255, 138, 157, 167),
+                        fillColor: const Color.fromARGB(255, 138, 157, 167),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
                         contentPadding: const EdgeInsets.symmetric(
@@ -138,21 +140,25 @@ class _AuthScreenState extends State<AuthScreen> {
                       validator: _validateConfirmPassword,
                     ),
                   ],
-                  SizedBox(height: 20),
-                  GestureDetector(
-                    onTap: _submit,
-                    child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      height: 30,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 138, 157, 167),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Text(
-                        _authMode == AuthMode.Login ? "تسجيل دخول" : "تسجيل",
-                        style: TextStyle(),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                  const SizedBox(height: 20),
+                  Consumer<AuthProvider>(
+                    builder: (context, auth, _) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            final AuthProvider authProvider =
+                                Provider.of<AuthProvider>(context,
+                                    listen: false);
+                            authProvider.signup(
+                              _emailController.text.trim(),
+                              _passwordController.text.trim(),
+                              context,
+                            );
+                          }
+                        },
+                        child: const Text("تسجيل"),
+                      );
+                    },
                   ),
                   const SizedBox(height: 10),
                   Row(

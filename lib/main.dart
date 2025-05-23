@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:report_app/screen/spalsh_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:report_app/providers/auth_provider.dart';
@@ -50,7 +51,8 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, auth, _) {
         auth.chekAuthState();
         return MaterialApp(
-          home: auth.logedin ? const HomeScreen() : const AuthScreen(),
+          home: SplashScreen(),
+          // auth.logedin ? const HomeScreen() : const AuthScreen(),
           debugShowCheckedModeBanner: false,
           title: 'Report App',
           theme: ThemeData(
@@ -59,6 +61,8 @@ class MyApp extends StatelessWidget {
           ),
           initialRoute: "/",
           routes: {
+            "/home_screen": (context) => const HomeScreen(),
+            "/auth_screen": (context) => const AuthScreen(),
             '/electricOptions': (context) => const ElctrecOptions(),
             '/add_report': (context) => const ReportPage(
                   option: '',

@@ -37,8 +37,9 @@ class _ReportPageState extends State<ReportPage> {
         ModalRoute.of(context)?.settings.arguments as Map<String, String>;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 3, 134, 152),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 3, 134, 152),
         title: const Align(
           alignment: Alignment.center,
           child: Text(
@@ -68,7 +69,8 @@ class _ReportPageState extends State<ReportPage> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(5)),
+                  color: Color.fromARGB(255, 138, 157, 167),
+                  borderRadius: BorderRadius.circular(5)),
               child: TextField(
                 controller: nameContrioler,
                 textDirection: TextDirection.rtl,
@@ -92,7 +94,8 @@ class _ReportPageState extends State<ReportPage> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(5)),
+                  color: Color.fromARGB(255, 138, 157, 167),
+                  borderRadius: BorderRadius.circular(5)),
               child: TextField(
                 controller: locationController,
                 textDirection: TextDirection.rtl,
@@ -119,7 +122,7 @@ class _ReportPageState extends State<ReportPage> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 5),
                         decoration: BoxDecoration(
-                            color: Colors.grey,
+                            color: Color.fromARGB(255, 138, 157, 167),
                             borderRadius: BorderRadius.circular(5)),
                         child: TextField(
                           controller: typeController,
@@ -173,7 +176,7 @@ class _ReportPageState extends State<ReportPage> {
                 width: 200,
                 height: 40,
                 decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Color.fromARGB(255, 138, 157, 167),
                     borderRadius: BorderRadius.circular(15)),
                 child: const Text(
                   "ارسال التقرير",

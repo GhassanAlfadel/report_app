@@ -13,7 +13,7 @@ class ReportItem extends StatelessWidget {
       width: double.infinity,
       height: 100,
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 138, 157, 167),
+          color: const Color.fromARGB(255, 138, 157, 167),
           borderRadius: BorderRadius.circular(10)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

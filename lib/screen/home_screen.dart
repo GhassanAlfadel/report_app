@@ -14,12 +14,13 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 3, 134, 152),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 3, 134, 152),
         actions: [
           IconButton(
               onPressed: () {
-                authProvider.logout();
+                authProvider.logout(context);
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.logout_outlined,
                 color: Colors.black,
               ))

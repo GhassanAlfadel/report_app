@@ -8,7 +8,8 @@ class AuthProvider with ChangeNotifier {
   bool logedin = false;
   String userId = "";
 
-  Future<void> signup(String email, String password) async {
+  Future<void> signup(
+      String email, String password, BuildContext context) async {
     final pref = await SharedPreferences.getInstance();
 
     try {
@@ -16,6 +17,9 @@ class AuthProvider with ChangeNotifier {
           email: email, password: password);
       String id = user.user!.uid;
       userId = id;
+      Navigator.of(context).pushReplacementNamed("/home_screen");
+
+      logedin = true;
       notifyListeners();
 
       await pref.setBool("logedin", true);
@@ -25,13 +29,16 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  Future<void> login(String email, String password) async {
+  Future<void> login(
+      String email, String password, BuildContext context) async {
     final pref = await SharedPreferences.getInstance();
     try {
       final user = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       String id = user.user!.uid;
       userId = id;
+      Navigator.of(context).pushReplacementNamed("/home_screen");
+      logedin = true;
       notifyListeners();
 
       await pref.setBool("logedin", true);
@@ -41,12 +48,14 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  Future<void> logout() async {
+  Future<void> logout(BuildContext context) async {
     final pref = await SharedPreferences.getInstance();
     try {
       _auth.signOut();
       await pref.clear();
+      Navigator.of(context).pushReplacementNamed("/auth_screen");
       userId = "";
+      logedin = false;
       notifyListeners();
     } catch (e) {
       print(e);
@@ -61,6 +70,16 @@ class AuthProvider with ChangeNotifier {
       notifyListeners();
     } else {
       logedin = false;
+      notifyListeners();
+    }
+  }
+
+  void autilogin() async {
+    final pref = await SharedPreferences.getInstance();
+    bool? logStatus = pref.containsKey("logedin");
+
+    if (logStatus) {
+      logedin = true;
       notifyListeners();
     }
   }

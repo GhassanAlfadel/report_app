@@ -7,7 +7,9 @@ class ElctrecOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 3, 134, 152),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 3, 134, 152),
         title: const Align(
           alignment: Alignment.center,
           child: Text(
@@ -32,7 +34,7 @@ class ElctrecOptions extends StatelessWidget {
                       arguments: {
                         'collection': "electric",
                         "devision": "مكيف",
-                        "type": "مكيف"
+                        "type": "صيانة مكيف"
                       });
                 },
               ),
@@ -43,7 +45,7 @@ class ElctrecOptions extends StatelessWidget {
                       arguments: {
                         'collection': "electric",
                         "devision": "مبرد",
-                        "type": "مبرد او ثلاجه"
+                        "type": "صيانة مبرد او ثلاجه"
                       });
                 },
               ),
@@ -54,7 +56,7 @@ class ElctrecOptions extends StatelessWidget {
                       arguments: {
                         'collection': "electric",
                         "devision": "مروحه",
-                        "type": "لمبه او مروحه"
+                        "type": "صيانة مروحه او لمبه"
                       });
                 },
               ),
